@@ -1,7 +1,7 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const inquirer = require("inquirer");
+const {prompt} = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
@@ -14,7 +14,7 @@ let employees = []
 
     // Add engineer
 const buildEngineer = (employee) => {
-    inquirer.prompt([
+    prompt([
         {
           type: 'input',
           name: 'github',
@@ -24,7 +24,7 @@ const buildEngineer = (employee) => {
 
     .then (engineer => {
          employees.push(new Engineer(employee.name, employee.id, employee.email, engineer.github))
-         subEmployee()
+         newEmployee()
     })
     
     .catch(err => console.log(err))
@@ -32,7 +32,7 @@ const buildEngineer = (employee) => {
 
 //   Add intern
 const buildIntern = (employee) => {
-    inquirer.prompt([
+    prompt([
         {
           type: 'input',
           name: 'school',
@@ -42,7 +42,7 @@ const buildIntern = (employee) => {
     
     .then (intern => {
         employees.push(new Intern(employee.name, employee.id, employee.email, intern.school))
-        subEmployee()
+        newEmployee()
     })
     
     .catch(err => console.log(err))
@@ -50,7 +50,7 @@ const buildIntern = (employee) => {
 
     // Add Manager
 const buildManager = (employee) => {
-    inquirer.prompt([
+    prompt([
         {
             type: 'input',
             name: 'officeNumber',
@@ -60,18 +60,18 @@ const buildManager = (employee) => {
     
     .then (manager => {
         employees.push(new Manager(employee.name, employee.id, employee.email, manager.officeNumber))
-        subEmployee()
+        newEmployee()
     })
     
     .catch(err => console.log(err))
   }
 //   Add new employees
-const subEmployee = () => {
-  inquirer.prompt({
+const newEmployee = () => {
+  prompt({
     type: 'list',
     name: 'select',
-    choices: ['Add a new employee', 'Finish'],
-    message: 'What would you like to do now?'
+    message: 'What would you like to do now?',
+    choices: ['Add a new employee', 'Finish']
   })
     .then(({ select }) => {
       switch (select) {
@@ -79,7 +79,8 @@ const subEmployee = () => {
           chooseEmployee()
           break
         case 'Finish':
-          console.log(select.select)
+          const html = render (employees)
+          fs.writeFileSync(path.join(__dirname,'output','index.html'), html)
           break
       }
     })
@@ -88,7 +89,7 @@ const subEmployee = () => {
 
 // Choices for employee
 const chooseEmployee = () => {
-    inquirer.prompt([
+    prompt([
       {
         type: 'list',
         name: 'role',
