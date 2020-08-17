@@ -6,7 +6,7 @@ const path = require("path");
 const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
+const outputPath = path.join(OUTPUT_DIR, "index");
 
 const render = require("./lib/htmlRenderer");
 
@@ -69,13 +69,13 @@ const buildManager = (employee) => {
 const newEmployee = () => {
   prompt({
     type: 'list',
-    name: 'select',
+    name: 'action',
     message: 'What would you like to do now?',
     choices: ['Add a new employee', 'Finish']
   })
-    .then(({ select }) => {
-      switch (select) {
-        case 'Add another employee':
+  .then(({ action }) => {
+    switch (action)  {
+        case 'Add a new employee':
           chooseEmployee()
           break
         case 'Finish':
