@@ -11,37 +11,75 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 let employees = []
-const newEngineer = (employee) => {
+
+    // Add engineer
+const buildEngineer = (employee) => {
     prompt([
-          {
-              type: 'input',
-              name: 'github',
-              message: 'What is their github username?'
-          }
-      ])
-          .then (engineer => {
-             employees.push(new Engineer(employee.name, employee.id, employee.email, engineer.github))
-             addEmployee()
-          })
-          .catch(err => console.log(err))
+        {
+          type: 'input',
+          name: 'github',
+          message: 'Enter employee github username:'
+        }
+    ])
+
+    .then (engineer => {
+         employees.push(new Engineer(employee.name, employee.id, employee.email, engineer.github))
+         subEmployee()
+    })
+    
+    .catch(err => console.log(err))
   }
 
+//   Add intern
+const buildIntern = (employee) => {
+    prompt([
+        {
+          type: 'input',
+          name: 'school',
+          message: 'What school does the intern go to?'
+        }
+    ])
+    
+    .then (intern => {
+        employees.push(new Intern(employee.name, employee.id, employee.email, intern.school))
+        subEmployee()
+    })
+    
+    .catch(err => console.log(err))
+  }
 
+    // Add Manager
+const buildManager = (employee) => {
+    prompt([
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: 'What is the manager office number?'
+        }
+    ])
+    
+    .then (manager => {
+        employees.push(new Manager(employee.name, employee.id, employee.email, manager.officeNumber))
+        subEmployee()
+    })
+    
+    .catch(err => console.log(err))
+  }
+//   Add new employees
 const subEmployee = () => {
   prompt({
     type: 'list',
-    name: 'action',
-    choices: ['Make Another Product', 'Finish'],
+    name: 'select',
+    choices: ['Add a new employee', 'Finish'],
     message: 'What would you like to do now?'
   })
     .then(({ action }) => {
       switch (action) {
-        case 'Make Another Product':
-          mainMenu()
+        case 'Add another employee':
+          chooseEmployees()
           break
         case 'Finish':
-          const html = render(products)
-          fs.writeFileSync(path.join(__dirname, 'output', 'index.html'), html)
+          console.log(action.action)
           break
       }
     })
