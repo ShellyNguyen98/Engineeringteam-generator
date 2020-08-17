@@ -76,7 +76,7 @@ const subEmployee = () => {
     .then(({ action }) => {
       switch (action) {
         case 'Add another employee':
-          chooseEmployees()
+          chooseEmployee()
           break
         case 'Finish':
           console.log(action.action)
@@ -87,7 +87,7 @@ const subEmployee = () => {
 }
 
 // Choices for employee
-const chooseEmployees = () => {
+const chooseEmployee = () => {
     prompt([
       {
         type: 'list',
@@ -128,4 +128,4 @@ const chooseEmployees = () => {
   }
   
 
-chooseEmployees()
+chooseEmployee()
