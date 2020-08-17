@@ -11,7 +11,10 @@ How do you deliver this? Here are some guidelines:
 
 Your app will run as a Node CLI to gather information about each employee.
 
+### Below is an example of what your application may look like:
 ![Below is an example of what your application may look like](clip/gif.gif)
+
+Click [here](clip/readme.mp4) to see the full clip 
 
  ## Description
  Building Node CLI that takes in information about employees and generates an HTML webpage that display summaries for each person. Using jest test to ensure all unit tests pass.
@@ -20,7 +23,6 @@ Your app will run as a Node CLI to gather information about each employee.
  - [Description](#description)
  - [Installation](#installation)
  - [Usage](#usage)
- - [License](#license)
  - [Contributing](#contributing)
  - [Question](#userName)
 
@@ -29,6 +31,11 @@ Your app will run as a Node CLI to gather information about each employee.
 
   ## Usage
   Generating a team roster
+
+  ## Test
+  Use jest
+  ### Below is the jest test: 
+  ![Below is an example of what your application may look like](clip/jest.gif)
 
   ## Contributing
   Shelly Nguyen
