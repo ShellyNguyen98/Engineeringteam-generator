@@ -14,7 +14,7 @@ let employees = []
 
     // Add engineer
 const buildEngineer = (employee) => {
-    prompt([
+    inquirer.prompt([
         {
           type: 'input',
           name: 'github',
@@ -32,7 +32,7 @@ const buildEngineer = (employee) => {
 
 //   Add intern
 const buildIntern = (employee) => {
-    prompt([
+    inquirer.prompt([
         {
           type: 'input',
           name: 'school',
@@ -50,7 +50,7 @@ const buildIntern = (employee) => {
 
     // Add Manager
 const buildManager = (employee) => {
-    prompt([
+    inquirer.prompt([
         {
             type: 'input',
             name: 'officeNumber',
@@ -67,19 +67,19 @@ const buildManager = (employee) => {
   }
 //   Add new employees
 const subEmployee = () => {
-  prompt({
+  inquirer.prompt({
     type: 'list',
     name: 'select',
     choices: ['Add a new employee', 'Finish'],
     message: 'What would you like to do now?'
   })
-    .then(({ action }) => {
-      switch (action) {
+    .then(({ select }) => {
+      switch (select) {
         case 'Add another employee':
-          chooseEmployees()
+          chooseEmployee()
           break
         case 'Finish':
-          console.log(action.action)
+          console.log(select.select)
           break
       }
     })
@@ -88,7 +88,7 @@ const subEmployee = () => {
 
 // Choices for employee
 const chooseEmployee = () => {
-    prompt([
+    inquirer.prompt([
       {
         type: 'list',
         name: 'role',
