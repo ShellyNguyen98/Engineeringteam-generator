@@ -76,7 +76,7 @@ const subEmployee = () => {
     .then(({ action }) => {
       switch (action) {
         case 'Add another employee':
-          chooseEmployee()
+          chooseEmployees()
           break
         case 'Finish':
           console.log(action.action)
